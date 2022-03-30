@@ -118,7 +118,7 @@ const User: FunctionComponent<UsersProps> = () => {
                                 <tr>
                                     <th>#</th>
                                     <th>Username</th>
-                                    <th>Tên sản phẩm</th>
+                                    <th>Tên khách hàng</th>
                                     <th>Tuổi</th>
                                     <th>Actions</th>
                                 </tr>

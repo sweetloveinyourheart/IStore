@@ -48,7 +48,7 @@ export class UserService {
 
     async getAllUser(): Promise<User[]> {
         try {
-            const users = await this.userModel.find().select({ password: 0 })
+            const users = await this.userModel.find({ role: 'customer' }).select({ password: 0 })
             return users
 
         } catch (error) {
