@@ -1,0 +1,123 @@
+version: "3.8"
+services:
+  app:
+    image: app
+    restart: unless-stopped
+    container_name: app
+    hostname: app
+    build:
+      context: app
+      target: runner
+      dockerfile: Dockerfile
+    environment:
+      PUBLIC_API: https://www.khsieuthisach.online/server
+      SERVER_API: http://api:9000
+      IMAGE_HOST: api
+      IMAGE_URL: http://api:9000/images
+      NEXTAUTH_URL: https://customer.khsieuthisach.online
+      SOCKET_URL: https://www.khsieuthisach.online
+
+    ports:
+      - 3000:3000
+
+    networks:
+      - shared-network
+
+  client:
+    image: client
+    restart: unless-stopped
+    container_name: client
+    hostname: client
+    build:
+      context: client
+      target: runner
+      dockerfile: Dockerfile
+    environment:
+      PUBLIC_API: https://www.khsieuthisach.online/server
+      SERVER_API: http://api:9000
+      IMAGE_HOST: api
+      IMAGE_URL: http://api:9000/images
+      NEXTAUTH_URL: https://www.khsieuthisach.online
+      SOCKET_URL: https://www.khsieuthisach.online
+
+    ports:
+      - 3000:3000
+
+    networks:
+      - shared-network
+  
+  api:
+    image: api
+    restart: unless-stopped
+    container_name: api
+    hostname: api
+    build: 
+      context: server
+      target: production
+      dockerfile: Dockerfile
+  
+    environment:
+      MONGO_URL: mongodb://bgroup:tynxcodejs@database:27017
+      JWT_SECRET: beducation
+      CORS: https://www.bedustore.xyz
+
+    ports:
+      - 9000:9000
+    
+    depends_on:
+      database:
+        condition: service_started
+    
+    volumes: 
+      - ./../images:/usr/src/api/images
+
+    networks:
+      - shared-network
+
+  database:
+    image: mongo
+    restart: unless-stopped
+    container_name: database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: bgroup
+      MONGO_INITDB_ROOT_PASSWORD: tynxcodejs
+
+    ports:
+      - "27017:27017"
+
+    networks:
+      - shared-network
+
+    volumes:
+      - mongo-data:/data/db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/certbot
+
+    command: /bin/sh -c "nginx -g 'daemon off;'"
+
+    depends_on:
+      app:
+        condition: service_started
+      api:
+        condition: service_started
+
+    networks:
+      - shared-network
+  
+networks:
+  shared-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

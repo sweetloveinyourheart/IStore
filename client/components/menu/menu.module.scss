@@ -1,0 +1,95 @@
+@import "../../styles/lib.scss";
+@import "../../styles/responsive.scss";
+
+// Menu CSS
+.menu {
+  flex: 0 0 5%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 1);
+  @include Responsive(md lg xl xxl xxxl) {
+    @include customScrollBar;
+  }
+
+  @include Responsive(xs sm) {
+    flex-direction: row;
+    border-top-right-radius: 0;
+    overflow-x: scroll;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+}
+
+.menu-item {
+  border-radius: 100%;
+  padding: 2px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 1px solid #fff;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0;
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+
+  @include Responsive(xs sm) {
+    flex: 0 0 52px;
+    margin: 0 8px;
+  }
+
+  &__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+
+    img {
+      border-radius: 100%;
+    }
+  }
+
+  &__name {
+    position: absolute;
+    left: 62px;
+    white-space: nowrap;
+    padding: 4px 12px;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 8px;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      transform: rotate(45deg);
+      width: 16px;
+      height: 16px;
+      background-color: #222;
+      z-index: -1;
+    }
+  }
+
+  &:hover {
+    .menu-item__name {
+      visibility: visible;
+      opacity: 1;
+      @include Responsive(xs sm) {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+}

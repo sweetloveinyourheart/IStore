@@ -1,0 +1,299 @@
+@import "../../styles/lib.scss";
+@import "../../styles/responsive.scss";
+
+// Bill CSS
+.bill {
+    flex: 0 0 30%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #fff;
+    padding: 20px;
+    color: #7e7e7e;
+    position: relative;
+    padding-bottom: 62px;
+
+    @include Responsive(xs sm) {
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 0;
+    }
+
+    hr {
+        border-color: #dcdcdc;
+        border: 0;
+        border-top: 1px solid #dcdcdc;
+    }
+
+    &__head {
+        h6 {
+            font-weight: 400;
+            font-size: 18px;
+            margin: 16px 0 8px 0;
+            text-decoration: underline;
+        }
+    }
+
+    &__foot {
+        padding: 12px 20px 12px 20px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        border-bottom-left-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.customer {
+    padding: 8px 0;
+
+    &__name {
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+        span {
+            font-weight: 700;
+            color: #222;
+        }
+    }
+
+    &__type {
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+    }
+}
+
+.products {
+    margin-top: 12px;
+    user-select: none;
+}
+
+.products-table {
+    padding-left: 4px;
+    overflow-y: scroll;
+    max-height: 275px;
+    @include customScrollBar();
+    @include Responsive(xxxl) {
+        max-height: 350px;
+    }
+
+    table {
+        width: 100%;
+
+        &,
+        th,
+        td {
+            border: 1px solid #dcdcdc;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th,
+        td {
+            font-size: 16px;
+            padding: 4px;
+        }
+
+        select {
+            padding: 2px 4px;
+        }
+
+        svg {
+            cursor: pointer;
+            color: #f30606;
+        }
+    }
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    input {
+        width: 40px;
+        padding: 4px;
+        text-align: center;
+        outline: none;
+        border-radius: 8px;
+        border: 1px solid #dcdcdc;
+
+        &::-webkit-inner-spin-button {
+            display: none;
+        }
+    }
+
+    button {
+        cursor: pointer;
+        border: none;
+        background-color: #fff;
+        font-size: 18px;
+        padding: 0 4px;
+    }
+
+    &__desc {
+        margin-right: 4px;
+        font-weight: 700;
+    }
+    &__incr {
+        margin-left: 4px;
+        font-weight: 700;
+    }
+}
+
+.coupon-area {
+    padding: 16px 0;
+    padding-left: 4px;
+    overflow-y: scroll;
+    max-height: 150px;
+    @include customScrollBar();
+    @include Responsive(xxxl) {
+        max-height: 250px;
+    }
+
+    &__title {
+        margin-bottom: 8px;
+    }
+
+    &__apply {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+
+.coupon {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 8px;
+
+    &__left {
+        background-color: #f30606;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 14px;
+
+        &--disable {
+            background-color: #555;
+        }
+    }
+
+    &__con {
+        width: 250px;
+        height: 50px;
+        position: relative;
+        background-color: #fdb3b3;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: #fff;
+        font-size: 14px;
+
+        &::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-radius: 100%;
+            top: -8px;
+            left: -6px;
+            position: absolute;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-radius: 100%;
+            bottom: -8px;
+            left: -6px;
+        }
+
+        &--disable {
+            background-color: #dcdcdc;
+        }
+    }
+}
+
+.total {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+
+    &__cost {
+        font-size: 18px;
+        font-weight: 700;
+        color: #d12032;
+    }
+}
+
+.payment {
+    display: flex;
+    justify-content: flex-end;
+
+    &__btn {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 12px;
+        border: 1px solid #fff;
+        transition: 0.2s ease;
+        display: flex;
+        align-items: center;
+
+        svg {
+            font-size: 20px;
+            margin-right: 4px;
+        }
+
+        &--blue {
+            background: #14a7fa;
+            color: #fff;
+            &:hover {
+                border: 1px solid #14a7fa;
+                color: #14a7fa;
+                background-color: #fff;
+            }
+        }
+
+        &--red {
+            background: #f30606;
+            color: #fff;
+            &:hover {
+                border: 1px solid #f30606;
+                color: #f30606;
+                background-color: #fff;
+            }
+        }
+
+        &--green {
+            background: #06e763;
+            color: #fff;
+            &:hover {
+                border: 1px solid #06e763;
+                color: #06e763;
+                background-color: #fff;
+            }
+        }
+    }
+}

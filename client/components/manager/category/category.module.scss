@@ -1,0 +1,194 @@
+@import "../../../styles/responsive.scss";
+
+.category {
+    padding: 30px 30px 0;
+    display: flex;
+    @include Responsive(xs sm) {
+        padding: 8px;
+        display: block;
+    }
+}
+
+.shop-categories {
+    flex: 0 0 64.66667%;
+    margin: 0 1%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+        0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+    @include Responsive(xs sm) {
+        margin: 8px 0;
+        overflow-x: scroll;
+    }
+}
+
+.categories-head {
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dcdcdc;
+
+    &__title {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: rgba(13, 27, 62, 0.7);
+        font-weight: bold;
+    }
+
+    &__page {
+        display: flex;
+
+        button {
+            margin-left: 12px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #fff;
+            background-color: #444054;
+            border: none;
+            border-radius: 8px;
+            transition: 0.2s;
+
+            svg {
+                font-size: 18px;
+            }
+
+            &:hover {
+                background-color: #2d2a37;
+            }
+        }
+    }
+}
+
+.categories-table {
+    padding: 12px 20px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        th {
+            text-align: center;
+            padding: 8px 0;
+        }
+        td {
+            text-align: center;
+            padding: 8px 0;
+            button {
+                color: #fff;
+                background-color: #3f6ad8;
+                border-color: #3f6ad8;
+                padding: 0.25rem 0.5rem;
+                line-height: 1.5;
+                border-radius: 0.2rem;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.create-category {
+    flex: 0 0 31.33333%;
+    margin: 0 1%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+        0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+
+    &__head {
+        padding: 16px 20px;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: rgba(13, 27, 62, 0.7);
+        font-weight: bold;
+        border-bottom: 1px solid #dcdcdc;
+    }
+}
+
+.category-form {
+    padding: 12px 20px;
+}
+
+.form-item {
+    margin-bottom: 12px;
+    &__label {
+        margin-bottom: 6px;
+    }
+
+    input {
+        padding: 6px 18px;
+        width: 100%;
+        font-size: 16px;
+        border-radius: 4px;
+        outline: none;
+        border: 1px solid #dcdcdc;
+
+        &[type="number"] {
+            width: 100px;
+            text-align: center;
+
+            &::-webkit-inner-spin-button {
+                display: none;
+            }
+        }
+    }
+
+    select {
+        width: 100%;
+        padding: 6px 18px;
+        outline: none;
+        border-radius: 4px;
+        border: 1px solid #dcdcdc;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px 18px;
+        background-color: #f30606;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        color: #fff;
+        transition: 0.2s;
+        cursor: pointer;
+        font-size: 16px;
+
+        &:hover {
+            border: 1px solid #f30606;
+            background-color: #fff;
+            color: #f30606;
+        }
+    }
+}
+
+.image-upload {
+    margin-bottom: 12px;
+    &__label {
+        margin-bottom: 6px;
+    }
+}
+
+.upload {
+    button {
+        padding: 4px 12px;
+        font-size: 16px;
+    }
+
+    &__actions {
+        padding-bottom: 8px;
+    }
+}
+
+.response-msg {
+    margin: 0;
+    margin-bottom: 12px;
+    font-size: 16px;
+}

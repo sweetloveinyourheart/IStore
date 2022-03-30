@@ -1,0 +1,37 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1199px;
+$xxl: 1400px;
+
+// media queries
+
+@mixin Responsive($breakpoints) {
+    @each $canvas in $breakpoints {
+        @if $canvas == xs {
+            @media only screen and (max-width: $sm) {
+                @content;
+            }
+        } @else if $canvas == md {
+            @media only screen and (min-width: $sm) and (max-width: $md) {
+                @content;
+            }
+        } @else if $canvas == lg {
+            @media only screen and (min-width: $md) and (max-width: $lg) {
+                @content;
+            }
+        } @else if $canvas == xl {
+            @media only screen and (min-width: $lg) and (max-width: $xl) {
+                @content;
+            }
+        } @else if $canvas == xxl {
+            @media only screen and (min-width: $xl) and (max-width: $xxl) {
+                @content;
+            }
+        } @else if $canvas == xxxl {
+            @media only screen and (min-width: $xxl) {
+                @content;
+            }
+        }
+    }
+}

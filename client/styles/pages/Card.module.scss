@@ -1,0 +1,51 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.mention {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: animate 1s ease 0s;
+
+    &__icon {
+        svg {
+            font-size: 72px;
+        }
+
+        &--success {
+            color: #06e763;
+        }
+
+        &--failed {
+            color: #f30606;
+        }
+    }
+
+    h1 {
+        margin: 12px 0;
+        font-size: 24px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.1);
+    }
+
+    60% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

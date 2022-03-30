@@ -1,0 +1,86 @@
+.paper {
+    padding: 20px;
+    background-color: #fff;
+
+    h5 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 18px;
+        margin: 0;
+        margin-bottom: 4px;
+    }
+}
+
+.shop-info {
+    margin: 16px 0;
+
+    &__name {
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &__address {
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+.customer {
+    margin: 16px 0;
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin: 4px 0;
+
+        span {
+            font-weight: bold;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.products {
+    margin: 12px 0;
+    table {
+        width: 100%;
+
+        &,
+        th,
+        td {
+            border: 1px solid #dcdcdc;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        th,
+        td {
+            font-size: 14px;
+            padding: 4px;
+        }
+    }
+}
+
+.total {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    &__cost {
+        font-size: 18px;
+    }
+}
+
+.welcome {
+    margin: 8px 0;
+    font-style: italic;
+    text-align: center;
+    font-size: 14px;
+}

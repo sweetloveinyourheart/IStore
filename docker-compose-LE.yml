@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  app:
+    image: app
+    restart: unless-stopped
+    container_name: app
+    hostname: app
+    build:
+      context: client
+      target: runner
+      dockerfile: Dockerfile
+    environment:
+      PUBLIC_API: https://www.bedustore.xyz/server
+      SERVER_API: http://api:9000
+      IMAGE_HOST: bedustore.xyz
+      IMAGE_URL: https://www.bedustore.xyz/server/images
+      NEXTAUTH_URL: https://www.bedustore.xyz
+
+    ports:
+      - 3000:3000
+
+    networks:
+      - shared-network
+
+  api:
+    image: api
+    restart: unless-stopped
+    container_name: api
+    hostname: api
+    build: 
+      context: server
+      target: production
+      dockerfile: Dockerfile
+  
+    environment:
+      MONGO_URL: mongodb://bgroup:tynxcodejs@database:27017
+      JWT_SECRET: beducation
+
+    ports:
+      - 9000:9000
+    
+    networks:
+      - shared-network
+
+  database:
+    image: mongo
+    restart: unless-stopped
+    container_name: database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: bgroup
+      MONGO_INITDB_ROOT_PASSWORD: tynxcodejs
+
+    ports:
+      - "27017:27017"
+
+    networks:
+      - shared-network
+
+    volumes:
+      - mongo-data:/data/db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - 80:80
+
+    volumes:
+      - ./nginx/LE/nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/certbot
+
+    command: /bin/sh -c "nginx -g 'daemon off;'"
+
+    depends_on:
+      app:
+        condition: service_started
+
+    networks:
+      - shared-network
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email khsieuthisach@khsieuthisach.online --agree-tos --no-eff-email -d khsieuthisach.online -d www.khsieuthisach.online -d customer.khsieuthisach.online
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/logs:/var/log/letsencrypt
+      - ./certbot/data:/var/www/certbot
+
+    depends_on:
+      nginx:
+        condition: service_started
+        
+networks:
+  shared-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
