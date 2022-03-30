@@ -18,7 +18,7 @@ services:
       SOCKET_URL: https://www.khsieuthisach.online
 
     ports:
-      - 3000:3000
+      - 3001:3001
 
     networks:
       - shared-network
