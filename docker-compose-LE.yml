@@ -7,15 +7,39 @@ services:
     container_name: app
     hostname: app
     build:
+      context: app
+      target: runner
+      dockerfile: Dockerfile
+    environment:
+      PUBLIC_API: https://www.khsieuthisach.online/server
+      SERVER_API: http://api:9000
+      IMAGE_HOST: api
+      IMAGE_URL: http://api:9000/images
+      NEXTAUTH_URL: https://customer.khsieuthisach.online
+      SOCKET_URL: https://www.khsieuthisach.online
+
+    ports:
+      - 3000:3000
+
+    networks:
+      - shared-network
+
+  client:
+    image: client
+    restart: unless-stopped
+    container_name: client
+    hostname: client
+    build:
       context: client
       target: runner
       dockerfile: Dockerfile
     environment:
-      PUBLIC_API: https://www.bedustore.xyz/server
+      PUBLIC_API: https://www.khsieuthisach.online/server
       SERVER_API: http://api:9000
-      IMAGE_HOST: bedustore.xyz
-      IMAGE_URL: https://www.bedustore.xyz/server/images
-      NEXTAUTH_URL: https://www.bedustore.xyz
+      IMAGE_HOST: api
+      IMAGE_URL: http://api:9000/images
+      NEXTAUTH_URL: https://www.khsieuthisach.online
+      SOCKET_URL: https://www.khsieuthisach.online
 
     ports:
       - 3000:3000
