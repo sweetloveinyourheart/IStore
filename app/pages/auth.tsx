@@ -33,7 +33,7 @@ const AuthenticationPage: NextPage = () => {
                     <form onSubmit={onLogin} className={styles['login-form']}>
                        
                         <div className={styles['login-form__head']}>
-                            Đăng nhập vào IStore
+                            Đăng nhập
                         </div>
                         {error
                             && <p className={styles['error-msg']}> {error} </p>
