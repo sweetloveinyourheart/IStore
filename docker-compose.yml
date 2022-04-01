@@ -14,7 +14,7 @@ services:
       SERVER_API: http://api:9000
       IMAGE_HOST: api
       IMAGE_URL: http://api:9000/images
-      NEXTAUTH_URL: https://customer.khsieuthisach.online
+      NEXTAUTH_URL: https://vip.khsieuthisach.online
       SOCKET_URL: https://www.khsieuthisach.online
 
     ports:

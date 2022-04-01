@@ -15,7 +15,7 @@ services:
       SERVER_API: http://api:9000
       IMAGE_HOST: api
       IMAGE_URL: http://api:9000/images
-      NEXTAUTH_URL: https://customer.khsieuthisach.online
+      NEXTAUTH_URL: https://vip.khsieuthisach.online
       SOCKET_URL: https://www.khsieuthisach.online
 
     ports:
@@ -107,7 +107,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email khsieuthisach@khsieuthisach.online --agree-tos --no-eff-email -d khsieuthisach.online -d www.khsieuthisach.online -d customer.khsieuthisach.online
+    command: certonly --webroot --webroot-path=/var/www/certbot --email khsieuthisach@khsieuthisach.online --agree-tos --no-eff-email -d khsieuthisach.online -d www.khsieuthisach.online -d vip.khsieuthisach.online
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/logs:/var/log/letsencrypt
