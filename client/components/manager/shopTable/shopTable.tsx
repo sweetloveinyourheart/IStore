@@ -42,7 +42,7 @@ const ShopTable: FunctionComponent<ShopTableProps> = () => {
             setArea(item)
         } else {
             let item = [{ name: "Khu vực ..." }]
-            localStorage.setItem(`tableList__${selectedArea}`, JSON.stringify(item))
+            localStorage.setItem(`tableArea`, JSON.stringify(item))
             setArea(item)
         }
     }, [])
