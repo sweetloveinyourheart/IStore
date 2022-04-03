@@ -3,7 +3,7 @@ import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { BiCreditCardAlt, BiCustomize, BiLabel, BiLogOutCircle, BiRocket, BiSpa, BiUserCircle } from "react-icons/bi"
+import { BiCreditCardAlt, BiCustomize, BiLabel, BiLogOutCircle, BiRocket, BiSpa, BiTable, BiUserCircle } from "react-icons/bi"
 import CategoryManager from "../components/manager/category/categoryManager"
 import OverView from "../components/manager/overview/overview"
 import ProductManager from "../components/manager/product/productManager"
@@ -12,6 +12,7 @@ import styles from '../styles/pages/Manager.module.scss'
 import { getSession, signOut } from "next-auth/react"
 import User from "../components/manager/user/users"
 import Voucher from "../components/manager/voucher/voucher"
+import ShopTable from "../components/manager/shopTable/shopTable"
 
 const ManagerPage: NextPage = () => {
     const [menu, setMenu] = useState<number>(0)
@@ -41,6 +42,8 @@ const ManagerPage: NextPage = () => {
                 return <User />
             case 5:
                 return <Voucher />
+            case 6:
+                return <ShopTable />
 
             default:
                 return <OverView />
@@ -105,6 +108,13 @@ const ManagerPage: NextPage = () => {
                         <BiCustomize />
                         <span> Danh mục </span>
                     </div> 
+                    <div
+                        className={styles['menu__item'] + " " + (menu === 6 ? styles['menu__item--active'] : "")}
+                        onClick={() => push('/manager?state=6')}
+                    >
+                        <BiTable />
+                        <span> Bàn </span>
+                    </div>
                     <h5> Tài khoản </h5>
                     <div
                         className={styles['menu__item'] + " " + (menu === 4 ? styles['menu__item--active'] : "")}
