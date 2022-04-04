@@ -87,7 +87,7 @@ export class BillService {
 
     public async getUserBills(username: string): Promise<Bill[]> {
         try {
-            return await this.billModel.find({ username }).sort({ createAt: -1 })
+            return await this.billModel.find({ 'customer.username': username }).sort({ createAt: -1 })
         } catch (error) {
             throw new NotFoundException()
         }

@@ -49,11 +49,11 @@ const OrderHistory: FunctionComponent<OrderHistoryProps> = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Mã đơn hàng</th>
                                 <th>Khách hàng</th>
                                 <th>Số lượng hàng</th>
                                 <th>Ngày tạo</th>
+                                <th>Thành tiền</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
