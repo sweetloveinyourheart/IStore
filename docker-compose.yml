@@ -69,7 +69,7 @@ services:
         condition: service_started
     
     volumes: 
-      - ./../images:/usr/src/api/images
+      - ./../images:/api/images
 
     networks:
       - shared-network
